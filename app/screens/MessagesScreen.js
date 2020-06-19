@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, FlatList, SafeAreaView, View } from "react-native";
+import { StyleSheet, FlatList } from "react-native";
 
 import ListItem from "../components/ListItem";
 import Screen from "../components/Screen";
@@ -23,11 +23,10 @@ const initialMessages = [
 
 function MessagesScreen(props) {
   const [messages, setMessages] = useState(initialMessages);
+  const [refreshing, setRefreshing] = useState(false);
 
   const handleDelete = (message) => {
-    //Delete the message from messages
     setMessages(messages.filter((m) => m.id !== message.id));
-
     //Call the server
   };
   return (
@@ -47,6 +46,17 @@ function MessagesScreen(props) {
           />
         )}
         ItemSeparatorComponent={ListItemSeparator}
+        refreshing={refreshing}
+        onRefresh={() => {
+          setMessages([
+            {
+              id: 2,
+              title: "Item2",
+              description: "This is the 2nd item",
+              picture: require("../assets/coding.jpg"),
+            },
+          ]);
+        }}
       />
     </Screen>
   );
