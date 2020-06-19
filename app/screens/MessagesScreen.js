@@ -3,6 +3,8 @@ import {
   StyleSheet,
   FlatList,
   SafeAreaView,
+  Platform,
+  StatusBar,
 } from "react-native";
 import Constants from "expo-constants";
 
