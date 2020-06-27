@@ -1,11 +1,7 @@
 import React from "react";
-
-import RegiserScreen from "./app/screens/RegisterScreen";
+import ListingEditScreen from "./app/screens/ListingEditScreen";
 
 
 export default function App() {
-  
-  return (<RegiserScreen/>
-
-  );
+  return <ListingEditScreen />;
 }

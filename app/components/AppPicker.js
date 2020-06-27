@@ -34,7 +34,11 @@ export default function AppPicker({
               style={styles.icon}
             />
           )}
-          <AppText style={styles.text}>{selectedItem ?selectedItem.label : placeholder}</AppText>
+          {selectedItem ? (
+            <AppText style={styles.text}>{selectedItem.label}</AppText>
+          ) : (
+            <AppText style={styles.placeholder}>{placeholder}</AppText>
+          )}
           <MaterialCommunityIcons
             name="chevron-down"
             size={20}
@@ -42,8 +46,9 @@ export default function AppPicker({
           />
         </View>
       </TouchableWithoutFeedback>
-      <Screen>
-        <Modal visible={modalVisible} animationType="slide">
+
+      <Modal visible={modalVisible} animationType="slide">
+        <Screen>
           <Button title="Close" onPress={() => setModalVisible(false)} />
           <FlatList
             data={items}
@@ -58,8 +63,8 @@ export default function AppPicker({
               />
             )}
           />
-        </Modal>
-      </Screen>
+        </Screen>
+      </Modal>
     </>
   );
 }
@@ -70,12 +75,15 @@ const styles = StyleSheet.create({
     borderRadius: 25,
     flexDirection: "row",
     width: "100%",
-    padding: 10,
+    padding: 15,
     marginVertical: 10,
-    alignItems: "center",
   },
   icon: {
     marginRight: 10,
+  },
+  placeholder: {
+    color: defaultStyles.colors.medium,
+    flex: 1,
   },
   text: {
     flex: 1,

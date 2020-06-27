@@ -1,5 +1,4 @@
 import React from "react";
-import { StyleSheet } from "react-native";
 import { useFormikContext } from "formik";
 
 import AppErrorMessage from "./AppErrorMessage";
@@ -19,4 +18,3 @@ export default function AppFormField({ name, ...otherProps }) {
   );
 }
 
-const styles = StyleSheet.create({});
