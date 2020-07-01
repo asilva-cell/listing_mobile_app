@@ -1,37 +1,36 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import * as ImagePicker from "expo-image-picker";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+
 import {
+  Alert,
   Image,
   StyleSheet,
   TouchableWithoutFeedback,
   View,
-  Alert,
 } from "react-native";
 
 import defaultStyles from "../config/styles";
-import AppNavigator from "../navigation/AppNavigator";
 
 export default function ImageInput({ imageUri, onChangeImage }) {
+  useEffect(() => {
+    requestPermission();
+  }, []);
+
   const requestPermission = async () => {
     const { granted } = await ImagePicker.requestCameraRollPermissionsAsync();
     if (!granted) alert("You need to enable permission to access the library.");
   };
-  useEffect(() => {
-    requestPermission();
-  }, []);
 
   const handlePress = () => {
     if (!imageUri) selectImage();
     else
       Alert.alert("Delete", "Are you sure you want to delete this image?", [
-        {
-          text: "Yes",
-          onPress: () => onChangeImage(null),
-        },
+        { text: "Yes", onPress: () => onChangeImage(null) },
         { text: "No" },
       ]);
   };
+
   const selectImage = async () => {
     try {
       const result = await ImagePicker.launchImageLibraryAsync({
@@ -43,6 +42,7 @@ export default function ImageInput({ imageUri, onChangeImage }) {
       console.log("Error reading an image", error);
     }
   };
+
   return (
     <TouchableWithoutFeedback onPress={handlePress}>
       <View style={styles.container}>
@@ -51,7 +51,6 @@ export default function ImageInput({ imageUri, onChangeImage }) {
             name="camera"
             size={40}
             color={defaultStyles.colors.medium}
-            style={styles.icon}
           />
         )}
         {imageUri && <Image source={{ uri: imageUri }} style={styles.image} />}

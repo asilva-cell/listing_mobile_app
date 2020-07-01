@@ -4,22 +4,17 @@ import { NavigationContainer } from "@react-navigation/native";
 import AppNavigator from "./app/navigation/AppNavigator";
 import navigationTheme from "./app/navigation/navigationTheme";
 
-import ImageInput from "./app/components/ImageInput";
+import ImageInputList from "./app/components/ImageInput";
 import Screen from "./app/components/Screen";
+import ListingEditScreen from "./app/screens/ListingEditScreen";
 
 export default function App() {
-  const [imageUri, setImageUri] = useState();
-
+ 
 
   return (
     // <NavigationContainer theme={navigationTheme}>
     //   <AppNavigator />
     // </NavigationContainer>
-    <Screen>
-      <ImageInput
-        imageUri={imageUri}
-        onChangeImage={(uri) => setImageUri(uri)}
-      />
-    </Screen>
+    <ListingEditScreen />
   );
 }
