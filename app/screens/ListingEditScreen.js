@@ -10,6 +10,7 @@ import {
 } from "../components/forms";
 
 import Screen from "../components/Screen";
+import ImageInput from "../components/ImageInput";
 
 const validationSchema = Yup.object().shape({
   title: Yup.string().required().min(1).label("Title"),
@@ -27,6 +28,7 @@ const categories = [
 export default function ListingEditScreen() {
   return (
     <Screen style={styles.container}>
+     
       <AppForm
         initialValues={{
           title: "",
