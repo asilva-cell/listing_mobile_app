@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { FlatList, StyleSheet } from "react-native";
+import { FlatList, StyleSheet} from "react-native";
 
 import Card from "../components/Card";
 import colors from "../config/colors";
@@ -8,17 +8,22 @@ import routes from "../navigation/routes";
 import Screen from "../components/Screen";
 import AppText from "../components/AppText";
 import AppButton from "../components/AppButton";
+import ActivityIndicator from "../components/ActivityIndicator"
 
 export default function ListingsScreen({ navigation }) {
   const [listings, setListings] = useState([]);
   const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     loadListings();
   }, []);
 
   const loadListings = async () => {
+    setLoading(true);
     const response = await listingsApi.getListings();
+    setLoading(false);
+
     if (!response.ok) return setError(true);
 
     setError(false);
@@ -27,6 +32,7 @@ export default function ListingsScreen({ navigation }) {
 
   return (
     <Screen style={styles.screen}>
+      <ActivityIndicator visible={loading} />
       {error && (
         <>
           <AppText>Couldn't retrieve the listings.</AppText>
