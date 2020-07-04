@@ -1,7 +1,7 @@
 import { create } from "apisauce";
 
 const apiClient = create({
-  baseURL: "https://da2591278181.ngrok.io/api",
+  baseURL: "https://7edbb7d6ff0e.ngrok.io/api",
 });
 
 export default apiClient;
