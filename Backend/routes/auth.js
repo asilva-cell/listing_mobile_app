@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Joi = require("joi");
 const jwt = require("jsonwebtoken");
+const config = require("config");
 const usersStore = require("../store/users");
 const validateWith = require("../middleware/validation");
 
@@ -18,7 +19,7 @@ router.post("/", validateWith(schema), (req, res) => {
 
   const token = jwt.sign(
     { userId: user.id, name: user.name, email },
-    "jwtPrivateKey"
+    config.get("jwtSecret")
   );
   res.send(token);
 });

@@ -22,6 +22,7 @@ web-report/
 .vscode/
 
 Backend/public/assets
+Backend/config/default.json
 
 # macOS
 .DS_Store

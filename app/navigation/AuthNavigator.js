@@ -6,6 +6,7 @@ import RegisterScreen from "../screens/RegisterScreen";
 import WelcomeScreen from "../screens/WelcomeScreen";
 
 const Stack = createStackNavigator();
+
 const AuthNavigator = () => (
   <Stack.Navigator>
     <Stack.Screen name="Welcome" component={WelcomeScreen} options={{headerShown:false}} />
