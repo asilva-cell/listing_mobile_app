@@ -21,7 +21,7 @@ export default function ListingsScreen({ navigation }) {
 
   return (
     <Screen style={styles.screen}>
-      <ActivityIndicator visible={getListingsApi.loading} />
+      {/* <ActivityIndicator visible={getListingsApi.loading} /> */}
       {getListingsApi.error && (
         <>
           <AppText>Couldn't retrieve the listings.</AppText>
