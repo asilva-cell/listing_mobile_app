@@ -1,13 +1,13 @@
-import React, { useContext } from "react";
+import React from "react";
 import { StyleSheet, View, FlatList } from "react-native";
 
-import AuthContext from "../auth/context";
 import colors from "../config/colors";
 import ListItem from "../components/ListItem";
 import Icon from "../components/Icon";
 import ListItemSeparator from "../components/ListItemSeparator";
 import routes from "../navigation/routes";
 import Screen from "../components/Screen";
+import userAuth from "../auth/userAuth";
 
 const menuItems = [
   {
@@ -29,7 +29,8 @@ const menuItems = [
 ];
 
 export default function AccountScreen({ navigation }) {
-  const { user, setUser } = useContext(AuthContext);
+  const { user, logOut } = userAuth();
+
   return (
     <Screen style={styles.screen}>
       <View style={styles.container}>
@@ -61,7 +62,7 @@ export default function AccountScreen({ navigation }) {
       <ListItem
         title="Log Out"
         IconComponent={<Icon name="logout" backgroundColor="#ffe66d" />}
-        onPress={() => setUser(null)}
+        onPress={() => logOut()}
       />
     </Screen>
   );
